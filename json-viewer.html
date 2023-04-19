@@ -1,0 +1,46 @@
+<html>
+<head>
+    <script src="script/jquery-3.6.4.min.js"></script>
+    <script src="script/json-viewer.js"></script>
+    <script>
+        $(document).ready(function(){
+
+            $("#rawJson").on("change keyup paste", handleJsonChange);
+
+            let exampleText = '{"status":"QUOTED","id":"8fbe8820-789e-4d15-a5da-5000e64c56b2","detail":{"id":"8fbe8820-789e-4d15-a5da-5000e64c56b2","quotePremiumAmount":3164.0,"quoteComissionAmount":711.9,"quoteStatus":{"statusCode":"Quoted","statusDetail":"Quoted successfully"},"quoteNumber":"QPL1032756","quoteKey":"285790001"}}'
+            $("#rawJson").val(exampleText);
+            handleJsonChange();
+        });
+
+        function handleJsonChange() {
+            let jsonStr = $("#rawJson").val();
+            updateJson(jsonStr);
+        }
+
+
+    </script>
+</head>
+<body>
+<div>
+    <div>
+        <p>Raw:</p>
+        <textarea id="rawJson" cols="120" rows="20">(raw)</textarea>
+    </div>
+    <div>
+        <p>
+            Everything above this is just here for testing.<br />
+            The real implementation will grab its JSON from an existing datasource.<br />
+            The stuff below this line is the component to be used in the Splunk dashboard.
+        </p>
+    </div>
+    <div>
+        <input type="button" id="showJsonButton" value="hide" />
+        <button id="copyButton">Copy to Clipboard</button>
+        Pretty copy <input type="checkbox" id="prettyCopyCbx" />
+        <div id="jsonDiv">
+            <textarea id="formattedJson" cols="120" rows="40">(formatted)</textarea>
+        </div>
+    </div>
+</div>
+</body>
+</html>
